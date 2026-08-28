@@ -125,6 +125,17 @@ def root():
         "model_features": 39
     }
 
+# ============================================================
+# HEALTH CHECK
+# ============================================================
+
+@app.get("/health")
+def health():
+
+    return {
+        "status": "healthy",
+        "service": "Credit Risk Assessment API"
+    }
 
 # ============================================================
 # MODEL INFORMATION
