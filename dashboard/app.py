@@ -17,7 +17,7 @@ st.set_page_config(
 # API CONFIGURATION
 # ============================================================
 
-API_URL = "http://127.0.0.1:8000/predict"
+API_URL = "https://credit-risk-assessment-system-production.up.railway.app/predict"
 
 
 # ============================================================
@@ -298,7 +298,7 @@ if st.button(
 
         st.error(
             "Could not connect to the FastAPI server. "
-            "Make sure Uvicorn is running on port 8000."
+            "Could not connect to the Credit Risk Assessment API. Please make sure the Railway API is online."
         )
 
     except requests.exceptions.Timeout:
