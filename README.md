@@ -1,152 +1,107 @@
 # Credit Risk Assessment System
 
-An end-to-end machine learning system for assessing loan default risk using borrower financial and demographic information. The project includes data preprocessing, feature engineering, machine learning model development, model evaluation and tuning, explainable AI analysis, a FastAPI prediction service, a Streamlit dashboard, Docker containerization, and cloud deployment.
+An end-to-end machine learning application that predicts **loan default risk** from borrower financial and demographic information.
+
+The system combines a trained machine learning model with a **FastAPI prediction API**, **Streamlit dashboard**, **Docker**, and **Railway deployment** to provide an accessible credit-risk assessment workflow.
 
 ---
 
 ## 🚀 Live Demo
 
-### Streamlit Dashboard
+| Service                 | Link                                                                  |
+| ----------------------- | --------------------------------------------------------------------- |
+| **Streamlit Dashboard** | https://dashboard-production-703e.up.railway.app/                     |
+| **FastAPI API**         | https://credit-risk-assessment-system-production.up.railway.app/      |
+| **Swagger Docs**        | https://credit-risk-assessment-system-production.up.railway.app/docs  |
+| **ReDoc**               | https://credit-risk-assessment-system-production.up.railway.app/redoc |
 
-**Credit Risk Assessment Dashboard:**
-https://dashboard-production-703e.up.railway.app/
-
-Use the dashboard to enter borrower information and receive:
+The dashboard allows users to enter borrower information and receive a:
 
 * Default probability
 * Risk score
 * Risk category
-* Approval decision
-
-### FastAPI Backend
-
-**API Base URL:**
-https://credit-risk-assessment-system-production.up.railway.app/
-
-### API Documentation
-
-**Swagger UI:**
-https://credit-risk-assessment-system-production.up.railway.app/docs
-
-**ReDoc:**
-https://credit-risk-assessment-system-production.up.railway.app/redoc
-
-### API Endpoints
-
-**Root:**
-https://credit-risk-assessment-system-production.up.railway.app/
-
-**Health Check:**
-https://credit-risk-assessment-system-production.up.railway.app/health
-
-**Model Information:**
-https://credit-risk-assessment-system-production.up.railway.app/model-info
-
-**Prediction:**
-https://credit-risk-assessment-system-production.up.railway.app/predict
-
-The `/predict` endpoint accepts a `POST` request containing borrower information and returns the predicted default probability, risk score, risk category, and decision.
+* Lending decision
 
 ---
 
-## 📌 Project Overview
+## 📌 Overview
 
-Credit risk assessment is an important application of machine learning in financial services. The objective of this project is to develop a system that estimates the probability that a borrower will default on a loan.
+Credit risk assessment is a common machine learning application in financial services. This project predicts the probability that a borrower will default on a loan and converts that probability into an easy-to-understand risk assessment.
 
-The system takes borrower characteristics such as:
+The application accepts borrower attributes such as income, loan amount, credit score, employment history, debt-to-income ratio, loan term, and other demographic and financial information.
 
-* Age
-* Income
-* Loan amount
-* Credit score
-* Employment duration
-* Number of credit lines
-* Interest rate
-* Loan term
-* Debt-to-income ratio
-* Education
-* Employment type
-* Marital status
-* Mortgage status
-* Dependents
-* Loan purpose
-* Co-signer status
-
-and produces a risk assessment.
-
-The final system provides both a machine learning prediction and a user-friendly interface for interacting with the prediction API.
+The trained model is exposed through a REST API, while the Streamlit dashboard provides a user-friendly interface for making predictions.
 
 ---
 
-## 🎯 Objectives
+## ✨ Features
 
-The main objectives of the project are:
-
-1. Perform exploratory data analysis on a large credit-risk dataset.
-2. Clean and preprocess the dataset.
-3. Engineer meaningful financial and borrower-risk features.
-4. Train multiple machine learning classification models.
-5. Compare model performance using appropriate classification metrics.
-6. Perform stratified cross-validation.
-7. Tune the selected model using hyperparameter optimization.
-8. Use explainable AI techniques to understand model predictions.
-9. Save the trained model and preprocessing pipeline.
-10. Build a REST API using FastAPI.
-11. Build an interactive dashboard using Streamlit.
-12. Containerize the API using Docker.
-13. Deploy the backend and dashboard to the cloud.
-14. Provide a complete reproducible project structure.
+* Exploratory data analysis
+* Data preprocessing
+* Feature engineering
+* Multiple classification models
+* Stratified cross-validation
+* Hyperparameter tuning
+* Model evaluation using multiple metrics
+* SHAP-based explainable AI analysis
+* Saved ML model and preprocessing pipeline
+* FastAPI REST API
+* Interactive Streamlit dashboard
+* Dockerized backend
+* Railway cloud deployment
+* Swagger and ReDoc API documentation
+* Automated risk categorization and decision output
 
 ---
 
-# 🏗️ System Architecture
+## 🏗️ Architecture
 
 ```text
-                    ┌──────────────────────┐
-                    │   Borrower Inputs    │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │ Streamlit Dashboard  │
-                    └──────────┬───────────┘
-                               │ HTTP POST
-                               ▼
-                    ┌──────────────────────┐
-                    │    FastAPI REST API  │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │ Feature Engineering  │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │ Saved Preprocessor   │
-                    │ ColumnTransformer    │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │ Logistic Regression  │
-                    │       Model          │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-              ┌─────────────────────────────────┐
-              │       Risk Assessment           │
-              │                                 │
-              │ Default Probability             │
-              │ Risk Score                       │
-              │ Risk Category                    │
-              │ Decision                         │
-              └─────────────────────────────────┘
+┌──────────────────────┐
+│   Borrower Inputs    │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Streamlit Dashboard  │
+└──────────┬───────────┘
+           │ HTTP POST
+           ▼
+┌──────────────────────┐
+│    FastAPI API       │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Feature Engineering  │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ ColumnTransformer    │
+│ Preprocessing        │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Logistic Regression  │
+│       Model          │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Risk Assessment      │
+│                      │
+│ Probability          │
+│ Risk Score           │
+│ Risk Category        │
+│ Decision             │
+└──────────────────────┘
 ```
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
 Credit-Risk-Assessment-System/
@@ -183,51 +138,57 @@ Credit-Risk-Assessment-System/
 └── README.md
 ```
 
+> If `api_predicton.png` is a typo in the actual repository, rename it to `api_prediction.png`.
+
 ---
 
 # 📊 Dataset
 
-The project uses a large-scale credit-risk dataset containing **255,347 borrower records**.
+The project uses a credit-risk dataset containing **255,347 borrower records**.
 
-The original dataset contains borrower information and a binary `Default` target indicating whether a borrower defaulted.
+The target variable is `Default`, representing whether a borrower defaulted.
 
-The target distribution is approximately:
+### Target Distribution
 
-* **Non-default:** 88.39%
-* **Default:** 11.61%
+| Class       | Percentage |
+| ----------- | ---------: |
+| Non-default |     88.39% |
+| Default     |     11.61% |
 
-Because the target is imbalanced, evaluation focuses not only on accuracy but also on precision, recall, F1-score, ROC-AUC, and PR-AUC.
+Because the dataset is imbalanced, model performance is evaluated using more than accuracy, including **Precision, Recall, F1-score, ROC-AUC, and PR-AUC**.
 
 ---
 
 # 🧮 Feature Engineering
 
-Additional features were created to capture relationships between borrower characteristics and financial risk.
+The project creates additional features to represent relationships between borrower characteristics and financial risk.
 
-The engineered features include:
-
-| Feature                | Description                                      |
-| ---------------------- | ------------------------------------------------ |
-| `MonthlyIncome`        | Annual income converted to monthly income        |
-| `EstimatedMonthlyDebt` | Estimated monthly debt based on income and DTI   |
-| `LoanToIncome`         | Loan amount relative to income                   |
-| `CreditToAgeRatio`     | Credit score relative to borrower age            |
-| `EmploymentStability`  | Employment duration relative to age              |
-| `HighRiskCombo`        | Combined high-DTI and low-credit-score indicator |
-| `InterestDebtStress`   | Interest rate combined with DTI                  |
-| `LoanPerCreditLine`    | Loan amount relative to number of credit lines   |
-
-These features were incorporated into the preprocessing and modeling pipeline.
+| Feature                | Description                                    |
+| ---------------------- | ---------------------------------------------- |
+| `MonthlyIncome`        | Annual income converted to monthly income      |
+| `EstimatedMonthlyDebt` | Estimated monthly debt based on income and DTI |
+| `LoanToIncome`         | Loan amount relative to income                 |
+| `CreditToAgeRatio`     | Credit score relative to borrower age          |
+| `EmploymentStability`  | Employment duration relative to age            |
+| `HighRiskCombo`        | Combination of high DTI and low credit score   |
+| `InterestDebtStress`   | Interest rate combined with DTI                |
+| `LoanPerCreditLine`    | Loan amount relative to number of credit lines |
 
 ---
 
-# ⚙️ Data Preprocessing
+# 🤖 Machine Learning
 
-The preprocessing pipeline handles numerical and categorical features separately.
+Three classification algorithms were evaluated:
 
-The project uses a saved `ColumnTransformer` preprocessing pipeline.
+* Logistic Regression
+* Random Forest
+* HistGradientBoosting
 
-After preprocessing:
+The final deployed model is **Logistic Regression**.
+
+The preprocessing pipeline uses a saved `ColumnTransformer` to ensure that prediction data is transformed consistently with the training data.
+
+### Dataset Processing
 
 ```text
 Training samples: 204,277
@@ -237,56 +198,21 @@ Original features: 24
 Processed features: 39
 ```
 
-The preprocessing pipeline also verifies that the processed training and testing data contain no missing values.
-
-The fitted preprocessing pipeline is saved as:
-
-```text
-models/preprocessor.joblib
-```
-
 ---
 
-# 🤖 Machine Learning Models
+# 📈 Model Performance
 
-Three classification models were evaluated:
+The baseline models were evaluated on the test set:
 
-1. Logistic Regression
-2. Random Forest
-3. HistGradientBoosting
+| Model                | Accuracy | Precision | Recall |     F1 |    ROC-AUC |
+| -------------------- | -------: | --------: | -----: | -----: | ---------: |
+| Logistic Regression  |   0.8869 |    0.6168 | 0.0695 | 0.1249 | **0.7617** |
+| Random Forest        |   0.8854 |    0.6471 |      — |      — |     0.7416 |
+| HistGradientBoosting |   0.8865 |    0.6053 |      — |      — |     0.7572 |
 
-The models were evaluated using:
+### Cross-Validation
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* ROC-AUC
-* PR-AUC
-
-The final deployed prediction service uses the trained **Logistic Regression** model.
-
----
-
-# 📈 Model Evaluation
-
-The baseline model comparison showed the following performance on the test set:
-
-| Model                | Accuracy | Precision | Recall |     F1 | ROC-AUC |
-| -------------------- | -------: | --------: | -----: | -----: | ------: |
-| Logistic Regression  |   0.8869 |    0.6168 | 0.0695 | 0.1249 |  0.7617 |
-| Random Forest        |   0.8854 |    0.6471 |      — |      — |  0.7416 |
-| HistGradientBoosting |   0.8865 |    0.6053 |      — |      — |  0.7572 |
-
-The project also uses PR-AUC because the default class is substantially smaller than the non-default class.
-
----
-
-# 🔄 Cross-Validation
-
-A **5-fold Stratified Cross-Validation** procedure was used to evaluate model stability while preserving the target-class distribution across folds.
-
-For Logistic Regression, the cross-validation results included:
+A **5-fold Stratified Cross-Validation** procedure was used to evaluate model stability.
 
 ```text
 Mean ROC-AUC: 0.7558
@@ -294,20 +220,11 @@ ROC-AUC Std:  0.0031
 Mean PR-AUC:  0.3264
 ```
 
-Stratification is important because the target variable is imbalanced.
+### Hyperparameter Tuning
 
----
+The Logistic Regression model was tuned using `RandomizedSearchCV` with 3-fold cross-validation and 10 parameter candidates.
 
-# 🎛️ Hyperparameter Tuning
-
-Hyperparameter tuning was performed using `RandomizedSearchCV` with:
-
-```text
-3-fold cross-validation
-10 parameter candidates
-```
-
-The tuned Logistic Regression model selected parameters approximately equivalent to:
+Selected parameters:
 
 ```text
 C = 0.07459
@@ -315,13 +232,7 @@ solver = liblinear
 class_weight = None
 ```
 
-The best cross-validation ROC-AUC was approximately:
-
-```text
-0.7559
-```
-
-The tuned model achieved approximately:
+The tuned model achieved:
 
 ```text
 Accuracy:  0.8869
@@ -336,7 +247,7 @@ PR-AUC:    0.3366
 
 # 🔍 Explainable AI
 
-SHAP was used during the machine learning analysis to investigate which features influenced model predictions.
+**SHAP** was used to analyze feature importance and understand how borrower characteristics influence model predictions.
 
 Important features identified during the analysis included:
 
@@ -347,101 +258,33 @@ Important features identified during the analysis included:
 * HasCoSigner
 * HasDependents
 
-The project also includes an individual borrower explanation example showing how specific borrower characteristics influence an individual prediction.
+The project also includes an individual prediction explanation demonstrating how specific borrower characteristics contribute to a prediction.
 
 ---
 
-# 💾 Saved Machine Learning Artifacts
+# 🚀 FastAPI
 
-The final trained artifacts are stored in the `models/` directory.
-
-### Logistic Regression Model
-
-```text
-models/logistic_regression_model.joblib
-```
-
-### Preprocessing Pipeline
-
-```text
-models/preprocessor.joblib
-```
-
-The saved preprocessing pipeline is essential because the API must transform new borrower data using the same preprocessing procedure used during model training.
-
----
-
-# 🚀 FastAPI Backend
-
-The REST API is implemented in:
-
-```text
-api/main.py
-```
+The machine learning model is served through a **FastAPI REST API**.
 
 The API loads:
 
-* The trained Logistic Regression model
-* The saved preprocessing pipeline
+* Trained Logistic Regression model
+* Saved preprocessing pipeline
 
-It then recreates the required engineered features for incoming borrower data before generating a prediction.
+Incoming borrower data is processed using the same feature engineering and preprocessing logic used during training.
 
----
+### API Endpoints
 
-## API Endpoints
+| Method | Endpoint      | Description              |
+| ------ | ------------- | ------------------------ |
+| `GET`  | `/`           | API information          |
+| `GET`  | `/health`     | Health status            |
+| `GET`  | `/model-info` | Model information        |
+| `POST` | `/predict`    | Generate risk prediction |
 
-### GET `/`
+### Example Prediction
 
-Returns basic information confirming that the API is running.
-
-### GET `/health`
-
-Returns the health status of the service.
-
-Example:
-
-```json
-{
-  "status": "healthy",
-  "service": "Credit Risk Assessment API"
-}
-```
-
-### GET `/model-info`
-
-Returns information about the deployed model and preprocessing pipeline.
-
-Example:
-
-```json
-{
-  "model": "LogisticRegression",
-  "preprocessor": "ColumnTransformer",
-  "number_of_features": 39,
-  "classes": [0, 1]
-}
-```
-
-### POST `/predict`
-
-Accepts borrower information and returns a risk assessment.
-
-Example response:
-
-```json
-{
-  "default_probability": 0.0249,
-  "risk_score": 2.49,
-  "risk_category": "Low Risk",
-  "decision": "APPROVED"
-}
-```
-
----
-
-# 📋 Prediction Input
-
-The prediction API accepts the following fields:
+**Request**
 
 ```json
 {
@@ -464,11 +307,22 @@ The prediction API accepts the following fields:
 }
 ```
 
+**Response**
+
+```json
+{
+  "default_probability": 0.0249,
+  "risk_score": 2.49,
+  "risk_category": "Low Risk",
+  "decision": "APPROVED"
+}
+```
+
 ---
 
 # ⚠️ Risk Classification
 
-The API converts the predicted default probability into a risk category.
+The predicted default probability is converted into a risk category and decision.
 
 | Default Probability | Risk Category | Decision      |
 | ------------------: | ------------- | ------------- |
@@ -476,7 +330,7 @@ The API converts the predicted default probability into a risk category.
 |       `0.15 – 0.35` | Medium Risk   | MANUAL REVIEW |
 |            `> 0.35` | High Risk     | REJECTED      |
 
-The risk score is represented on a 0–100 scale:
+The risk score is calculated as:
 
 ```text
 Risk Score = Default Probability × 100
@@ -488,30 +342,23 @@ For example:
 Default Probability = 0.1984
 Risk Score          = 19.84
 Risk Category       = Medium Risk
+Decision            = MANUAL REVIEW
 ```
-
-The risk score and probability therefore contain the same underlying information but are presented on different scales for usability.
 
 ---
 
 # 🖥️ Streamlit Dashboard
 
-The interactive dashboard is implemented in:
+The project includes an interactive **Streamlit dashboard** for making predictions without directly interacting with the API.
 
-```text
-dashboard/app.py
-```
+The dashboard allows users to enter borrower information and displays:
 
-The dashboard allows users to enter borrower information through a graphical interface.
-
-The dashboard communicates with the deployed FastAPI backend and displays:
-
-* Default Probability
-* Risk Score
-* Risk Category
+* Default probability
+* Risk score
+* Risk category
 * Decision
 
-Possible decisions are:
+Possible decisions:
 
 ```text
 APPROVED
@@ -519,7 +366,7 @@ MANUAL REVIEW
 REJECTED
 ```
 
-### Dashboard URL
+### Dashboard
 
 https://dashboard-production-703e.up.railway.app/
 
@@ -527,42 +374,29 @@ https://dashboard-production-703e.up.railway.app/
 
 # 🐳 Docker
 
-The FastAPI application is containerized using Docker.
-
-The project includes:
-
-```text
-Dockerfile
-.dockerignore
-```
-
-The Docker image uses Python 3.12 and installs the API dependencies defined in:
-
-```text
-api/requirements.txt
-```
+The FastAPI backend is containerized using Docker.
 
 The container includes:
 
 * FastAPI application
-* Saved machine learning model
-* Saved preprocessing pipeline
+* Trained machine learning model
+* Preprocessing pipeline
 
-The API runs using Uvicorn on port `8000`.
+The project uses **Python 3.12** for the API container.
 
-### Build Docker Image
+### Build
 
 ```bash
 docker build -t credit-risk-api .
 ```
 
-### Run Container
+### Run
 
 ```bash
 docker run --rm -p 8000:8000 credit-risk-api
 ```
 
-The local API can then be accessed at:
+The local API will be available at:
 
 ```text
 http://127.0.0.1:8000
@@ -578,138 +412,48 @@ http://127.0.0.1:8000/docs
 
 # ☁️ Deployment
 
-The project has been deployed using Railway.
-
-The backend and Streamlit dashboard are deployed as separate services.
+The application is deployed on **Railway** as separate backend and dashboard services.
 
 ### Backend
 
-```text
 https://credit-risk-assessment-system-production.up.railway.app/
-```
 
 ### Dashboard
 
-```text
 https://dashboard-production-703e.up.railway.app/
-```
 
-The Streamlit dashboard communicates with the deployed FastAPI backend rather than the local development server.
-
----
-
-# 🧪 Testing
-
-The API was tested through the FastAPI Swagger interface and direct HTTP requests.
-
-The following functionality was verified:
-
-* API startup
-* Root endpoint
-* Health endpoint
-* Model information endpoint
-* Prediction endpoint
-* Dockerized API
-* Model loading
-* Preprocessor loading
-* Prediction generation
-* Risk classification
-* Approval decision
-* Manual review decision
-* Rejection decision
-* Streamlit dashboard
-* Dashboard-to-API communication
-* Deployed backend
-* Deployed dashboard
-
-Screenshots documenting the testing and dashboard functionality are included in:
-
-```text
-screenshots/
-```
-
----
-
-# 🛠️ Technologies Used
-
-### Programming
-
-* Python
-
-### Data Science
-
-* Pandas
-* NumPy
-* Scikit-learn
-* SHAP
-
-### Machine Learning
-
-* Logistic Regression
-* Random Forest
-* HistGradientBoosting
-* RandomizedSearchCV
-* Stratified Cross-Validation
-
-### Backend
-
-* FastAPI
-* Uvicorn
-* Pydantic
-
-### Frontend / Dashboard
-
-* Streamlit
-* Requests
-
-### Model Persistence
-
-* Joblib
-
-### Containerization
-
-* Docker
-
-### Deployment
-
-* Railway
-
-### Development
-
-* Jupyter Notebook
-* Visual Studio Code
-* Git
-* GitHub
+The deployed Streamlit dashboard communicates with the deployed FastAPI backend.
 
 ---
 
 # 📦 Installation
 
-Clone the repository:
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Seerat-Un-Nisa/Credit-Risk-Assessment-System.git
-```
-
-Navigate into the project:
-
-```bash
 cd Credit-Risk-Assessment-System
 ```
 
-Create a virtual environment:
+## 2. Create a Virtual Environment
 
 ```bash
 python3 -m venv .venv
 ```
 
-Activate it on macOS/Linux:
+### macOS / Linux
 
 ```bash
 source .venv/bin/activate
 ```
 
-Install project dependencies:
+### Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+## 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -717,39 +461,35 @@ pip install -r requirements.txt
 
 ---
 
-# ▶️ Run the FastAPI Backend Locally
+# ▶️ Run Locally
 
-From the project root:
+### Start FastAPI
 
 ```bash
 uvicorn api.main:app --reload --port 8000
 ```
 
-Open:
+Open the API documentation:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
----
+### Start Streamlit
 
-# ▶️ Run the Streamlit Dashboard Locally
-
-Start the API first.
-
-Then run:
+In a separate terminal:
 
 ```bash
 streamlit run dashboard/app.py
 ```
 
-The dashboard will normally become available at:
+The dashboard will normally be available at:
 
 ```text
 http://localhost:8501
 ```
 
-The dashboard must be configured to communicate with the appropriate FastAPI backend URL.
+Make sure the dashboard is configured to use the correct FastAPI backend URL.
 
 ---
 
@@ -761,18 +501,16 @@ The complete machine learning workflow is available in:
 notebook/Credit_Risk_Assessment_System_FINAL.ipynb
 ```
 
-The notebook contains the project workflow including:
+The notebook contains the detailed:
 
-* Dataset loading
-* Exploratory data analysis
-* Data preprocessing
+* Data analysis
+* Preprocessing
 * Feature engineering
-* Feature verification
 * Model training
 * Model comparison
 * Cross-validation
 * Hyperparameter tuning
-* Model evaluation
+* Evaluation
 * SHAP analysis
 * Model persistence
 
@@ -780,11 +518,11 @@ The notebook contains the project workflow including:
 
 # 📸 Screenshots
 
-The repository contains screenshots demonstrating:
+The `screenshots/` directory contains examples of the deployed system, including:
 
 * FastAPI Swagger documentation
-* API health endpoint
-* API model information
+* API health check
+* Model information
 * API prediction
 * Streamlit dashboard
 * Dashboard input form
@@ -792,19 +530,40 @@ The repository contains screenshots demonstrating:
 * Manual review prediction
 * Rejected prediction
 
-Screenshots are available in:
+---
 
-```text
-screenshots/
-```
+# 🛠️ Tech Stack
+
+| Category          | Technologies                           |
+| ----------------- | -------------------------------------- |
+| Language          | Python                                 |
+| Data Science      | Pandas, NumPy                          |
+| Machine Learning  | Scikit-learn                           |
+| Explainable AI    | SHAP                                   |
+| Backend           | FastAPI, Uvicorn, Pydantic             |
+| Dashboard         | Streamlit                              |
+| HTTP Client       | Requests                               |
+| Model Persistence | Joblib                                 |
+| Containerization  | Docker                                 |
+| Deployment        | Railway                                |
+| Development       | Jupyter Notebook, VS Code, Git, GitHub |
 
 ---
 
-# 🔐 Important Notes
+# 🔐 Limitations & Disclaimer
 
-This project is an educational machine learning implementation and should not be treated as a production financial decision-making system without additional validation, monitoring, security controls, fairness analysis, regulatory review, and domain expert oversight.
+This project is an **educational machine learning implementation** and is not intended to be used as a production financial decision-making system.
 
-The risk thresholds used by the API are project-defined thresholds and should not be interpreted as actual banking or regulatory lending policies.
+A real-world lending system would require additional:
+
+* Model validation
+* Monitoring
+* Security controls
+* Fairness and bias analysis
+* Regulatory compliance
+* Domain expert review
+
+The risk thresholds used by this project are **project-defined thresholds** and should not be interpreted as actual banking or regulatory lending policies.
 
 ---
 
@@ -813,11 +572,10 @@ The risk thresholds used by the API are project-defined thresholds and should no
 **Seerat-Un-Nisa**
 
 GitHub:
-
 https://github.com/Seerat-Un-Nisa
 
 ---
 
-# 📄 License
+## 📄 License
 
-This project is intended for educational and portfolio purposes.
+This project is intended for **educational and portfolio purposes**.
