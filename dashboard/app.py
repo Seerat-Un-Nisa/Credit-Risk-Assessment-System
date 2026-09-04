@@ -39,7 +39,7 @@ st.divider()
 # ============================================================
 
 st.header("Borrower Information")
-
+st.caption("Example borrower information is pre-filled for demonstration. Modify the values as required.")
 col1, col2, col3 = st.columns(3)
 
 with col1:
